@@ -17,7 +17,6 @@ export class ElementsController {
 
   @Post()
   create(@Body() createElementDto: CreateElementDto) {
-    console.log('create controller');
     return this.elementsService.create(createElementDto);
   }
 

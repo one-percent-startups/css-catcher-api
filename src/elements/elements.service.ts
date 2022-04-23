@@ -12,7 +12,6 @@ export class ElementsService {
   ) {}
 
   async create(createElement: CreateElementDto): Promise<Element> {
-    console.log('element create', createElement);
     try {
       const element = await this.element.create(createElement);
       return element;
