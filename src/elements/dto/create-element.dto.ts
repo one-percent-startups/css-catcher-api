@@ -28,6 +28,10 @@ export class CreateElementDto {
   @IsString()
   @IsOptional()
   title: String | undefined;
+
+  @IsString()
+  @IsNotEmpty()
+  user: string;
 }
 
 class StyleDto {

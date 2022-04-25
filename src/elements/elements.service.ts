@@ -13,15 +13,20 @@ export class ElementsService {
 
   async create(createElement: CreateElementDto): Promise<Element> {
     try {
-      const element = await this.element.create(createElement);
-      return element;
+      const element = new this.element(createElement);
+      return element.save();
     } catch (e) {
       throw new HttpException(`Error: ${e}`, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
-  findAll() {
-    return `This action returns all elements`;
+  async findAll(): Promise<ElementDocument[]> {
+    try {
+      const elements = await this.element.find().exec();
+      return elements;
+    } catch (e) {
+      throw new HttpException(`Error: ${e}`, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   findOne(id: number) {

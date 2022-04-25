@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
+import { User } from 'src/users/schemas/user.schema';
 
 class StyleProp {
   @Prop()
@@ -1181,6 +1183,9 @@ export class Element {
 
   @Prop()
   title: String;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'user' })
+  user: User;
 }
 
 export type ElementDocument = Element & Document;
