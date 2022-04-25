@@ -4,9 +4,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ElementsModule } from './elements/elements.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, 
+    }),
     MongooseModule.forRoot('mongodb://localhost/element', {
       connectionName: 'elements',
     }),
@@ -15,6 +20,7 @@ import { UsersModule } from './users/users.module';
     }),
     ElementsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
